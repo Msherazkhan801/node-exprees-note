@@ -7,7 +7,7 @@ const userSchema = new Schema(
         username: {
             type: String,
             required: true,
-            unique: true,
+            // unique: true,
             lowecase: true,
             trim: true, 
             index: true
@@ -59,6 +59,7 @@ userSchema.pre("save", async function (next) {
 })
 
 userSchema.methods.isPasswordCorrect = async function(password){
+    console.log(password,"pass");
     return await bcrypt.compare(password, this.password)
 }
 
